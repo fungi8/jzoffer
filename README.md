@@ -1,7 +1,7 @@
 ## README jzoffer Solution
 
 ##### Author
-i'm JonWong, this is my Solution in 《剑指offer》
+I'm JonWong, this is my Solution in 《剑指offer》
 
 ##### Annotation
 when i'm do this work, i might forget to add a serial number.
