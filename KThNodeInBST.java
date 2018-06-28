@@ -1,7 +1,6 @@
 package jzoffer;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Stack;
 
 /**
  * create by fungus on 2018/6/27
@@ -17,31 +16,30 @@ public class KThNodeInBST {
         int val = 0;
         TreeNode left = null;
         TreeNode right = null;
+
         public TreeNode(int val) {
             this.val = val;
         }
     }
 
     public class Solution {
-        //这个是不压入系统栈中的
-        int index = 0;
         TreeNode KthNode(TreeNode root, int k) {
-            if (root != null) {
-                //去了最左的子树 --> 返回空---> 然后统计左子树的top数量
-                TreeNode node = KthNode(root.left, k);
+            if (root == null || k == 0) return null;
+            Stack<TreeNode> stack = new Stack<>();
+            int count = 0;
+            TreeNode node = root;
+            do {
                 if (node != null) {
-                    return node;
+                    stack.push(node);
+                    node = node.left;
+
+                } else {
+                    node = stack.pop();
+                    if (++count == k) return node;
+                    node = node.right;
                 }
-                index++;
-                if (index == k) {
-                    return root;
-                }
-                node = KthNode(node.right, k);
-                if (node != null) {
-                    return node;
-                }
-            }
-            return null;
+            } while (!stack.empty() || node != null);
+        return null;
         }
     }
 }
